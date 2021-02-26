@@ -5,9 +5,7 @@ use std::result::Result::Err;
 use minigrep::{run, SearchConfiguration};
 
 fn main() {
-    let arguments: Vec<String> = env::args().collect();
-
-    let search_config = SearchConfiguration::new(&arguments).unwrap_or_else(|err| {
+    let search_config = SearchConfiguration::new(env::args().skip(1)).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
